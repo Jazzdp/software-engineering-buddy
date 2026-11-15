@@ -54,6 +54,13 @@ checks:
     advice: "Add an open-source license (MIT, Apache 2.0) to protect yourself and users."
     tool: "choosealicense.com"
 
+  - id: env-example
+    stage: 2
+    type: auto
+    title: ".env.example exists"
+    advice: "Provide a template file showing which environment variables are needed."
+    tool: "sebuddy (built-in)"
+
  
   # STAGE 3: DEVELOPMENT & CODE QUALITY
  
@@ -102,6 +109,12 @@ checks:
     advice: "Remove API keys, passwords, and tokens from the code. Use environment variables."
     tool: "sebuddy (built-in scanner)"
     
+  - id: dockerfile
+    stage: 4
+    type: auto
+    title: "Secure Dockerfile exists"
+    advice: "Containerize your app, but make sure it runs as a non-root user."
+    tool: "Docker"
 
   - id: container-security
     stage: 4

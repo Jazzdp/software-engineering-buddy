@@ -1,7 +1,6 @@
 plugins {
     application
-     jacoco 
-    id("com.diffplug.spotless") version "6.25.0" 
+    jacoco
 }
 
 repositories {
@@ -31,8 +30,13 @@ application {
 tasks.test {
     useJUnitPlatform()
 }
-spotless {
-    java {
-        googleJavaFormat()
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "software.engineering.buddy.App"
     }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }) {
+        exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
