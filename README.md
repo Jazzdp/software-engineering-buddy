@@ -1,10 +1,12 @@
 # Software Engineering Buddy 
+```text
    _____      ____            __    __     
   / ___/___  / __ )__  ______/ /___/ /_  __
   \__ \/ _ \/ __  / / / / __  / __  / / / /
  ___/ /  __/ /_/ / /_/ / /_/ / /_/ / /_/ / 
 /____/\___/_____/\__,_/\__,_/\__,_/\__, /  
-                                  /____/   
+                                  /____/
+```
 Your SDLC & DevSecOps Project Coach. Stop guessing what to do next.
 
 `sebuddy` is a CLI tool that guides you through the entire Software Development Life Cycle (SDLC). Whether you are starting a brand new project, or have an existing codebase that needs a health check, this tool tells you exactly what is missing, what to do next, and gives you the tools to fix it.
