@@ -32,3 +32,5 @@ build
 .env 
 
 .sebuddy.yml
+.exe
+Output/
