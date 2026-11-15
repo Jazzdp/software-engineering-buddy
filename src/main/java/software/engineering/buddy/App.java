@@ -208,13 +208,37 @@ public class App implements Callable<Integer> {
                 System.out.println(color(GREEN, "Excellent! You have completed all checks. Your project is production-ready."));
             }
             
-            if (exportJson) {
+                if (exportJson) {
                 Map<String, Object> report = new HashMap<>();
                 report.put("score", score);
                 report.put("stage", currentStage);
                 report.put("passed", passedCount);
                 report.put("total", total);
-                mapper.writeValue(folder.resolve("report.json").toFile(), report);
+
+                // Create a stage breakdown for the website charts
+                Map<Integer, Map<String, Integer>> stageStats = new HashMap<>();
+                for (Check check : checksFile.checks()) {
+                    if (targetStage != null && check.stage() != targetStage) continue;
+                    
+                    boolean passed = false;
+                    if ("auto".equals(check.type())) {
+                        AutoCheck autoCheck = registry.get(check.id());
+                        if (autoCheck != null) passed = autoCheck.run(folder);
+                    } else if ("manual".equals(check.type())) {
+                        passed = confirmed.getOrDefault(check.id(), false);
+                    }
+                    
+                    stageStats.putIfAbsent(check.stage(), new HashMap<>());
+                    Map<String, Integer> stats = stageStats.get(check.stage());
+                    stats.putIfAbsent("total", 0);
+                    stats.putIfAbsent("passed", 0);
+                    stats.put("total", stats.get("total") + 1);
+                    if (passed) stats.put("passed", stats.get("passed") + 1);
+                }
+                report.put("stages", stageStats);
+
+                ObjectMapper jsonMapper = new ObjectMapper();
+                jsonMapper.writeValue(folder.resolve("report.json").toFile(), report);
                 System.out.println(color(CYAN, "Exported report to report.json")); 
             }
             return 0;     

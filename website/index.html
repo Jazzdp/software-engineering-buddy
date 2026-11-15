@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Buddy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --surface: #4F2F4F;
+            --accent: #A67CA6;
+            --border: #5E5E5E;
+            --text: #E8E8E8;
+            --muted: #A0A0A0;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg);
+            /* Gothic Damask CSS Pattern */
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(166, 124, 166, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 0% 0%, rgba(166, 124, 166, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 100% 100%, rgba(166, 124, 166, 0.1) 0%, transparent 20%),
+                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(79, 47, 79, 0.2) 20px, rgba(79, 47, 79, 0.2) 21px),
+                repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(79, 47, 79, 0.2) 20px, rgba(79, 47, 79, 0.2) 21px);
+            background-size: 120px 120px, 80px 80px, 80px 80px, 40px 40px, 40px 40px;
+            background-blend-mode: overlay;
+            color: var(--text);
+        }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .gradient-text { 
+            background: linear-gradient(90deg, #A67CA6, #7E4F7E); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            padding-bottom: 0.15em;
+            line-height: 1.2;
+            display: inline-block;
+        }
+        .terminal-box, .feature-card, .bg-\[\#1C1C1C\] { 
+            background-color: rgba(28, 28, 28, 0.95) !important; 
+            backdrop-filter: blur(4px);
+        }
+        .terminal-box { border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .btn-primary { background-color: var(--accent); color: #2E2E2E; }
+        .btn-primary:hover { background-color: #7E4F7E; }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-secondary:hover { background-color: var(--surface); }
+        .feature-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
+        .accent { color: var(--accent); }
+        .muted { color: var(--muted); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-8">
+
+    <!-- Hero: Explain what it is FIRST -->
+    <main class="max-w-4xl w-full mt-12 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">Software Engineering Buddy</h1>
+        <p class="text-xl muted mb-4 max-w-2xl mx-auto">
+            A CLI coach that tells you exactly what to do next in your project's lifecycle—
+            from planning and prototyping to CI/CD and security scanning.
+        </p>
+        <p class="text-md muted mb-8 max-w-2xl mx-auto">
+            Stop guessing. Run one command. Get a health score and a step-by-step roadmap.
+        </p>
+        
+        <div class="flex justify-center gap-4 mb-12">
+            <a href="#demo" class="btn-primary font-semibold py-3 px-6 rounded-md transition">See Your Score</a>
+            <a href="https://github.com/Jazzdp/software-engineering-buddy" class="btn-secondary font-semibold py-3 px-6 rounded-md transition">View on GitHub</a>
+        </div>
+
+        <!-- What it does: 3 concrete features -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 text-left">
+            <div class="feature-card">
+                <h3 class="text-lg font-bold mb-2 text-white">5-Stage Roadmap</h3>
+                <p class="muted text-sm">Planning, Setup, Code Quality, DevSecOps, and Deployment. It knows what order to do things in.</p>
+            </div>
+            <div class="feature-card">
+                <h3 class="text-lg font-bold mb-2 text-white">Auto-Fixer</h3>
+                <p class="muted text-sm">Missing a CI pipeline or a secure Dockerfile? One command generates it for you.</p>
+            </div>
+            <div class="feature-card">
+                <h3 class="text-lg font-bold mb-2 text-white">Secret Scanner</h3>
+                <p class="muted text-sm">Finds hardcoded passwords and API keys before you accidentally commit them.</p>
+            </div>
+        </div>
+
+        <!-- How it works: CLI First, Dashboard Optional -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-8 text-white">How it works</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 code-font text-sm mb-6">
+                <div class="bg-[#1C1C1C] border border-[#5E5E5E] rounded-lg p-4 flex-1 w-full md:w-auto">
+                    <span class="accent font-bold">1.</span> Scan your repo<br>
+                    <code class="muted text-xs">java -jar sebuddy.jar check .</code>
+                </div>
+                <div class="text-2xl muted hidden md:block">→</div>
+                <div class="bg-[#1C1C1C] border border-[#5E5E5E] rounded-lg p-4 flex-1 w-full md:w-auto">
+                    <span class="accent font-bold">2.</span> Fix what's missing<br>
+                    <code class="muted text-xs">java -jar sebuddy.jar fix ci-exists .</code>
+                </div>
+                <div class="text-2xl muted hidden md:block">→</div>
+                <div class="bg-[#1C1C1C] border border-[#5E5E5E] rounded-lg p-4 flex-1 w-full md:w-auto">
+                    <span class="accent font-bold">3.</span> Get your next step<br>
+                    <code class="muted text-xs">java -jar sebuddy.jar next .</code>
+                </div>
+            </div>
+            
+            <p class="muted text-sm">
+                <span class="text-white font-bold">Optional:</span> Add <code class="bg-[#1C1C1C] px-1 rounded text-xs">--json</code> to your check command to export a report, then upload it below for a visual dashboard.
+            </p>
+        </div>
+
+        <!-- Interactive Demo Section -->
+        <div id="demo" class="w-full scroll-mt-8">
+            <h2 class="text-2xl font-bold mb-2 text-white">Optional: Visual Dashboard</h2>
+            <p class="muted text-sm mb-6">Run the command with <code class="bg-[#1C1C1C] px-1 rounded text-xs">--json</code>, then upload the <code class="bg-[#1C1C1C] px-1 rounded text-xs">report.json</code> file here to see your score.</p>
+
+            <!-- Terminal Preview -->
+            <div class="terminal-box p-6 text-left code-font text-sm mb-8 overflow-x-auto">
+                <div class="muted mb-2">$ java -jar sebuddy.jar check . --json</div>
+                <div class="accent mb-4">
+<pre style="font-family: 'Fira Code', monospace; line-height: 1.2;">
+  _____       ____             __    __     
+ / ___/ ___  / __ )__  _______/ /___/ /_  __
+ \__  \/ _ \/ __  / / / / __   / __  / / / /
+ ___/ /  __/ /_/ / /_/ / /_/  / /_/ / /_/ / 
+/____/\___/_____/\__,_/\__,__/\__,_/\__, /  
+                                   /____/   
+</pre>
+                </div>
+                <div class="muted mb-4">Your SDLC & DevSecOps Coach</div>
+                <div class="text-white font-bold mb-1">STAGE 4</div>
+                <div class="muted mb-2">--------------------------------------------------</div>
+                <div><span class="text-green-500">[PASS]</span> CI Pipeline exists</div>
+                <div><span class="text-red-500">[FAIL]</span> Secure Dockerfile exists</div>
+                <div class="muted pl-9">-> Containerize your app, but make sure it runs as a non-root user.</div>
+                <div class="accent pl-9 mb-2">Tool: Docker</div>
+                <div class="muted mt-4">--------------------------------------------------</div>
+                <div class="text-white font-bold">HEALTH SCORE: <span class="text-yellow-500">72/100</span></div>
+            </div>
+
+            <!-- JSON Uploader -->
+            <div class="bg-[#1C1C1C] border border-[#5E5E5E] rounded-xl p-8 text-left">
+                <input type="file" id="jsonInput" accept=".json" class="block w-full text-sm muted file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#A67CA6] file:text-[#2E2E2E] hover:file:bg-[#7E4F7E] cursor-pointer"/>
+                
+                <div id="resultArea" class="mt-6 hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="text-6xl font-extrabold accent" id="scoreDisplay">0</div>
+                        <div class="muted text-xl">/ 100 Health Score</div>
+                    </div>
+                    
+                    <div class="w-full bg-[#2E2E2E] rounded-full h-4 mb-8">
+                        <div id="scoreBar" class="bg-[#A67CA6] h-4 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                    </div>
+
+                    <h3 class="text-white font-bold text-lg mb-4">Stage Breakdown</h3>
+                    <div id="stagesContainer" class="space-y-3"></div>
+
+                    <p class="muted mt-6 text-sm">Current Stage: <span id="stageDisplay" class="text-white font-bold"></span></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="muted text-sm mt-auto mb-4">
+        Built for the open-source community. MIT License.
+    </footer>
+
+    <script>
+        document.getElementById('jsonInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // 1. Show the area
+                    document.getElementById('resultArea').classList.remove('hidden');
+                    
+                    // 2. Update Top Score
+                    document.getElementById('scoreDisplay').innerText = data.score;
+                    const bar = document.getElementById('scoreBar');
+                    bar.style.width = data.score + '%';
+                    bar.style.backgroundColor = data.score > 80 ? '#A67CA6' : (data.score > 50 ? '#9C7A3C' : '#660000');
+
+                    // 3. Update Stage Text
+                    const stageNames = {1: "Planning", 2: "Setup", 3: "Quality", 4: "DevSecOps", 5: "Deployment"};
+                    document.getElementById('stageDisplay').innerText = "Stage " + data.stage + " - " + (stageNames[data.stage] || "Unknown");
+
+                    // 4. Build the Stage Breakdown Bars
+                    const container = document.getElementById('stagesContainer');
+                    container.innerHTML = ''; // clear old results
+
+                    const stages = data.stages || {};
+                    for (let i = 1; i <= 5; i++) {
+                        const stage = stages[i] || stages[String(i)];
+                        if (!stage) continue;
+
+                        const percent = Math.round((stage.passed / stage.total) * 100);
+                        
+                        container.innerHTML += `
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">${stageNames[i]}</span>
+                                    <span class="muted">${stage.passed}/${stage.total} Passed</span>
+                                </div>
+                                <div class="w-full bg-[#2E2E2E] rounded-full h-2">
+                                    <div class="bg-[#A67CA6] h-2 rounded-full" style="width: ${percent}%"></div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert("Invalid JSON file. Please make sure you uploaded the correct report.json.");
+                }
+            };
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>

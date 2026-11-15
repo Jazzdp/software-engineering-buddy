@@ -1,0 +1,141 @@
+checks:
+ 
+  # STAGE 1: PLANNING & ARCHITECTURE
+ 
+  - id: project-plan
+    stage: 1
+    type: manual
+    title: "Write a project plan"
+    advice: "Define the problem, target audience, and success metrics."
+    tool: "Notion / GitHub Projects"
+
+  - id: architecture-decision
+    stage: 1
+    type: manual
+    title: "Document Architecture Decisions"
+    advice: "Create an Architecture Decision Record (ADR) for your tech stack choices."
+    tool: "ADR GitHub Repo / Markdown"
+
+  - id: figma-prototype
+    stage: 1
+    type: manual
+    title: "Create a UI/UX prototype"
+    advice: "Sketch the user flow and main screens before coding."
+    tool: "Figma / Penpot / Excalidraw"
+
+ 
+  # STAGE 2: SETUP & HYGIENE
+ 
+  - id: readme-exists
+    stage: 2
+    type: auto
+    title: "README exists"
+    advice: "Create a README.md explaining what the project does and how to run it."
+    tool: "Markdown"
+
+  - id: gitignore-exists
+    stage: 2
+    type: auto
+    title: ".gitignore exists"
+    advice: "Prevent committing build artifacts, IDE files, and secrets."
+    tool: "gitignore.io"
+
+  - id: env-in-gitignore
+    stage: 2
+    type: auto
+    title: ".env is ignored"
+    advice: "Ensure your .gitignore contains '.env' so you never commit passwords."
+    tool: "gitignore.io"
+
+  - id: license-exists
+    stage: 2
+    type: auto
+    title: "LICENSE exists"
+    advice: "Add an open-source license (MIT, Apache 2.0) to protect yourself and users."
+    tool: "choosealicense.com"
+
+  - id: env-example
+    stage: 2
+    type: auto
+    title: ".env.example exists"
+    advice: "Provide a template file showing which environment variables are needed."
+    tool: "sebuddy (built-in)"
+
+ 
+  # STAGE 3: DEVELOPMENT & CODE QUALITY
+ 
+  - id: tests-exist
+    stage: 3
+    type: auto
+    title: "Automated tests exist"
+    advice: "You cannot refactor safely without tests. Write unit tests for core logic."
+    tool: "JUnit (Java) / PyTest (Python) / Jest (JS)"
+
+  - id: quality-tools
+    stage: 3
+    type: auto
+    title: "Code Quality tools configured"
+    advice: "Automate code formatting and coverage. Add Spotless/JaCoCo or ESLint/Prettier."
+    tool: "Spotless / JaCoCo / ESLint"
+
+  - id: sonar-config
+    stage: 3
+    type: manual
+    title: "Static Analysis (SAST)"
+    advice: "Run SonarQube/SonarCloud to find code smells, bugs, and vulnerabilities."
+    tool: "SonarCloud"
+
+ 
+  # STAGE 4: CI/CD & DEVSECOPS
+ 
+  - id: ci-exists
+    stage: 4
+    type: auto
+    title: "CI Pipeline exists"
+    advice: "Automate tests and builds on every push using GitHub Actions."
+    tool: "GitHub Actions / GitLab CI"
+
+  - id: dependabot
+    stage: 4
+    type: auto
+    title: "Dependency updates automated"
+    advice: "Use Dependabot or Renovate to automatically update vulnerable packages."
+    tool: "Dependabot"
+
+  - id: secret-scan
+    stage: 4
+    type: auto
+    title: "No hardcoded secrets detected"
+    advice: "Remove API keys, passwords, and tokens from the code. Use environment variables."
+    tool: "sebuddy (built-in scanner)"
+    
+  - id: dockerfile
+    stage: 4
+    type: auto
+    title: "Secure Dockerfile exists"
+    advice: "Containerize your app, but make sure it runs as a non-root user."
+    tool: "Docker"
+
+  - id: container-security
+    stage: 4
+    type: manual
+    title: "Scan Containers for Vulnerabilities"
+    advice: "If using Docker, scan your images for CVEs before deploying."
+    tool: "Trivy / Snyk"
+
+ 
+  # STAGE 5: DEPLOYMENT & MAINTENANCE
+  
+  - id: deployment-docs
+    stage: 5
+    type: manual
+    title: "Document Deployment Process"
+    advice: "Write down exactly how to deploy the app (env variables, database migrations)."
+    tool: "Markdown / Notion"
+
+  - id: observability
+    stage: 5
+    type: manual
+    title: "Set up Logging & Monitoring"
+    advice: "Don't fly blind. Add structured logging and error tracking (e.g., Sentry)."
+    tool: "Sentry / Prometheus / Grafana"
