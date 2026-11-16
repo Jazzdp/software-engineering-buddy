@@ -28,13 +28,17 @@ Run the tool from any folder:
 
 ```bash
 # Check your repo's health and see your roadmap
+sebuddy check . 
 java -jar software-engineering-buddy.jar check .
 
 # See exactly what to do next
+sebuddy next 
 java -jar software-engineering-buddy.jar next .
 
 # Automatically fix missing files (e.g., CI pipeline or Dockerfile)
+sebuddy fix ci-exists .
 java -jar software-engineering-buddy.jar fix ci-exists .
 
 # Confirm a manual step (e.g., Figma prototype)
+sebuddy confirm figma-prototype
 java -jar software-engineering-buddy.jar confirm figma-prototype .
